@@ -2,7 +2,7 @@
 const express = require ('express');
 const router = express.Router();
 const morgan = require('morgan');
-const {WebSocket, WebSocketServer} = require('ws')
+const {WebSocket, WebSocketServer} = require('ws');
 
 // Config
 const app = express();
