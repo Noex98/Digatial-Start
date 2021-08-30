@@ -2,6 +2,7 @@
 const express = require ('express');
 const router = express.Router();
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser')
 const {WebSocket, WebSocketServer} = require('ws');
 
 // Config
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 4000;
 const wss = new WebSocketServer({ port: 4050 }, () => console.log('WS server kører på port: 4050'))
 
 // Middleware
+app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 app.use(morgan('dev'));
@@ -28,13 +30,26 @@ app.use((req, res, next) => {
 var open_connections = ['123']
 
 app.post('/api/wsauth', (req, res) => {
-    console.log(req.body)
-    res.json({message: 'ok'})
+
+    if (open_connections.includes(req.body.room_id)){
+        
+        //res.cookie('room_id', req.body.room_id)
+        //res.cookie('username', req.body.username)
+        //res.json({req_accept: true})
+
+    }else {
+        console.log('cookie sent')
+        res.cookie('test', 'test val',)
+        console.log(req.cookies)
+        res.json({
+            req_accept: false,
+            err: `Error: Room "${req.body.room_id}" does not exist`
+        })
+    }
 })
 
 wss.on('connection', (ws, req) => {
     console.log('new client')
-    console.log(ws)
 
     ws.on('close', () => {
         console.log('lost a client')
