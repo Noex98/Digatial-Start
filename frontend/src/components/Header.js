@@ -1,13 +1,14 @@
-import NavigateBack from "../utils/NavigateBack.js"
+import NavigateBack from "../utils/NavigateBack.js";
+import Link from "../utils/Link.js"
 
 export default function Header(props){
 
     function backBtn(){
         if (props && props.backBtn){
             return (/*html*/`
-                <div class="header__backBtn">
+                <div class="content__backBtn">
                     ${NavigateBack(/*html*/`
-                        <div><</div>
+                        <i class="fas fa-chevron-left"></i>
                     `)}
                 </div>
             `)
@@ -15,21 +16,36 @@ export default function Header(props){
             return ''
         }
     }
+
+    window.burgerClick = () => {
+        let burger = document.querySelector('.content__burger')
+        let header = document.querySelector('header')
+
+        burger.classList.toggle('burger--active')
+        header.classList.toggle('header--active')
+    }
     
 
     return (/*html*/`
-        <header>
-            ${backBtn()}
+        <header class="header">
 
-            <img src="../media/img/logo.svg" alt="logo" />
+            <div class="header__content">
+                ${backBtn()}
 
-            <div class="header__burger">
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="content__logo">
+                    ${Link('/', /*html*/`
+                        <img src="../media/img/logo.svg" alt="logo" />
+                    `)}
+                </div>
+
+                <div class="content__burger" onclick="burgerClick()">
+                    <div class="burger__line1"></div>
+                    <div class="burger__line2"></div>
+                    <div class="burger__line3"></div>
+                </div>
             </div>
 
-            <nav>
+            <nav class="header__nav">
                 <ul>
                     <li>asdad</li>
                     <li>asdad</li>

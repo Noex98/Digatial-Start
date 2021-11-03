@@ -1,55 +1,6 @@
-import { endpoint } from "./utils/Http.js";
+import { local_resource } from "./utils/classes.js";
 
-export let x = new endpoint(
-    location.origin,
-    '/api/test',
-)
-
-/*
-
-export let user = {
-    loaded: false,
-    dataStore: undefined,
-    data: () => {
-        if (user.loaded){
-            return user.dataStore
-        } else {
-            fetch(__ENV + '/api/user')
-                .then(res => res.json())
-                .then(data => {
-                    if (data.auth === false){
-                        Redirect('/login')
-                    } else {
-                        user.dataStore = data 
-                        user.loaded = true
-                        ReRender()
-                    }
-                })
-        }
-    },
-    update: () => {
-
-        user.loaded = false,
-        user.dataStore = undefined,
-
-        user.data = () => {
-            if (user.loaded){
-                return user.dataStore
-            } else {
-                fetch(__ENV + '/api/user')
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.auth === false){
-                            Redirect('/login')
-                        } else {
-                            user.dataStore = data 
-                            user.loaded = true
-                            ReRender()
-                        }
-                    })
-            }
-        }
-    }
-}
-
-*/
+// Local json files
+export let cities = new local_resource('./data/cities.json')
+export let categories = new local_resource('./data/categories.json')
+export let aarhus = new local_resource('./data/aarhus.json')

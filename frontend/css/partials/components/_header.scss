@@ -1,28 +1,98 @@
-header {
-    position: relative;
-    padding:24px;
+.header {
+    position: sticky;
+    top:0;
+    background:white;
+    z-index: 100;
 
-    img {
-        margin: 0 auto;
+    .header__content {
+        position: relative;
+        padding:12px;
+        display: flex;
+        justify-content: center;
     }
 
-    .header__backBtn {
+    .content__logo {
+        img {
+            max-width: 200px;
+        }
+    }
+    
+
+    .content__backBtn {
         position: absolute;
         left:10px;
         top:50%;
         transform: translateY(-50%);
+        a {
+            padding:10px;
+        }
     }
 
-    .header__burger {
+    .content__burger {
         position: absolute;
         right:10px;
         top:50%;
         transform: translateY(-50%);
+        z-index: 1000;
+
+        height: 24px;
+        width:31px;
+        align-items: flex-end;
+        justify-content: space-between;
+        display:flex;
+        flex-direction: column-reverse;
+        cursor: pointer;
         
+        >div {
+            right:0;
+            position:absolute;
+            transition:250ms;
+            width:31px;
+            height:3px;
+            background-color: rgb(231, 0, 19);
+        }
+        .burger__line1 {
+            top: 0;
+        }
+        .burger__line2 {
+            top: 10px;
+            width:25px;
+        }
+        .burger__line3 {
+            top: 20px;
+        }
+    }
+
+    .burger--active {
+        .burger__line1{
+            transform:rotate(-45deg) translate(-7px, 6px);
+        }
+        .burger__line2{
+            opacity: 0;
+            transform:translateX(10%)
+        }
+        .burger__line3{
+            transform:rotate(45deg) translate(-7px, -6px);
+        }
     }
 
     nav {
-        display: none;
-    }
+        transition: 200ms;
+        max-height: 0;
+        overflow:hidden;
+        height: calc(100vh - 67px);
 
+        ul {
+            list-style: none;
+        }
+    }
+}
+
+.header--active {
+    height:100vh;
+
+    nav {
+        max-height:100vh;
+        border-top: 1px solid rgba(0, 0, 0, 0.3);
+    }
 }

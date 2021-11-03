@@ -1,0 +1,50 @@
+[
+    {
+        "name": {
+            "da": "Aarhus",
+            "en": "Aarhus"
+        },
+        "img": {
+            "url": "x",
+            "alt": "x"
+        },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati praesentium laudantium itaque veritatis delectus non quidem odio sequi sit, placeat quae ratione est. Non hic deserunt repellat natus eligendi? Possimus.",
+        "data-set":"aarhus.json"
+    },
+    {
+        "name": {
+            "da": "København",
+            "en": "Copenhagen"
+        },
+        "img": {
+            "url": "",
+            "alt": ""
+        },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati praesentium laudantium itaque veritatis delectus non quidem odio sequi sit, placeat quae ratione est. Non hic deserunt repellat natus eligendi? Possimus.",
+        "data-set":""
+    },
+    {
+        "name": {
+            "da": "Aalborg",
+            "en": "Aalborg"
+        },
+        "img": {
+            "url": "",
+            "alt": ""
+        },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati praesentium laudantium itaque veritatis delectus non quidem odio sequi sit, placeat quae ratione est. Non hic deserunt repellat natus eligendi? Possimus.",
+        "data-set":""
+    },
+    {
+        "name": {
+            "da": "Odense",
+            "en": "Odense"
+        },
+        "img": {
+            "url": "",
+            "alt": ""
+        },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati praesentium laudantium itaque veritatis delectus non quidem odio sequi sit, placeat quae ratione est. Non hic deserunt repellat natus eligendi? Possimus.",
+        "data-set":""
+    }
+]

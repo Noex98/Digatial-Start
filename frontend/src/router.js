@@ -1,13 +1,17 @@
 // Views
 import Err404 from './views/Err404.js'
 import Home from './views/Home.js'
+import City from './views/City.js'
 
 const routes = [
     {
         path: '/',
         view: Home,
-        auth: true,
         title: 'Home'
+    }, {
+        path: '/city',
+        view: City,
+        title: 'By'
     }
 ]
 
@@ -28,7 +32,9 @@ function render(data){
 
 // Global navigation function
 window.navigateTo = (path, data) => {
-    window.history. pushState(null, null, path)
+    if (path !== location.pathname){
+        window.history. pushState(null, null, path)
+    }
     render(data)
 }
 
