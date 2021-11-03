@@ -1,0 +1,28 @@
+header {
+    position: relative;
+    padding:24px;
+
+    img {
+        margin: 0 auto;
+    }
+
+    .header__backBtn {
+        position: absolute;
+        left:10px;
+        top:50%;
+        transform: translateY(-50%);
+    }
+
+    .header__burger {
+        position: absolute;
+        right:10px;
+        top:50%;
+        transform: translateY(-50%);
+        
+    }
+
+    nav {
+        display: none;
+    }
+
+}
