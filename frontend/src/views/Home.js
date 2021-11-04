@@ -17,7 +17,7 @@ export default function Home(){
                 <div class="home__city">
                     <h3>${city.name.da}</h3>
                     <img src="${city.img.url}" alt="${city.img.alt}" />
-                    <p>${city.description}</p>
+                    <p>${city.description.short}</p>
                     ${Link('/city?' + city.name.en, /*html*/`
                         <div>EXPLORE NOW <i class="fas fa-chevron-right"></i></div>
                     `)}

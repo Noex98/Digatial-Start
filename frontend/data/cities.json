@@ -5,10 +5,14 @@
             "en": "Aarhus"
         },
         "img": {
-            "url": "x",
-            "alt": "x"
+            "url": "../media/images/",
+            "alt": ""
         },
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati praesentium laudantium itaque veritatis delectus non quidem odio sequi sit, placeat quae ratione est. Non hic deserunt repellat natus eligendi? Possimus.",
+        "description": {
+            "short": "Lorem",
+            "medium": "Lorem",
+            "long": "Lorem"
+        },
         "data-set":"aarhus.json"
     },
     {
@@ -17,10 +21,14 @@
             "en": "Copenhagen"
         },
         "img": {
-            "url": "",
+            "url": "../media/images/",
             "alt": ""
         },
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati praesentium laudantium itaque veritatis delectus non quidem odio sequi sit, placeat quae ratione est. Non hic deserunt repellat natus eligendi? Possimus.",
+        "description": {
+            "short": "Lorem",
+            "medium": "Lorem",
+            "long": "Lorem"
+        },
         "data-set":""
     },
     {
@@ -29,10 +37,14 @@
             "en": "Aalborg"
         },
         "img": {
-            "url": "",
+            "url": "../media/images/",
             "alt": ""
         },
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati praesentium laudantium itaque veritatis delectus non quidem odio sequi sit, placeat quae ratione est. Non hic deserunt repellat natus eligendi? Possimus.",
+        "description": {
+            "short": "Lorem",
+            "medium": "Lorem",
+            "long": "Lorem"
+        },
         "data-set":""
     },
     {
@@ -41,10 +53,14 @@
             "en": "Odense"
         },
         "img": {
-            "url": "",
+            "url": "../media/images/",
             "alt": ""
         },
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati praesentium laudantium itaque veritatis delectus non quidem odio sequi sit, placeat quae ratione est. Non hic deserunt repellat natus eligendi? Possimus.",
+        "description": {
+            "short": "Lorem",
+            "medium": "Lorem",
+            "long": "Lorem"
+        },
         "data-set":""
     }
 ]

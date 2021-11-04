@@ -25,6 +25,7 @@ export default function City(){
                 return
             }
         }
+    // City is not specified
     } else {
         Redirect('/')
         return
@@ -39,7 +40,7 @@ export default function City(){
             </div>
             <div class="city__introText">
                 <h2>Tekst</h2>
-                <p>${city.description}</p>
+                <p>${city.description.medium}</p>
             </div>
         </div>
     `)   
