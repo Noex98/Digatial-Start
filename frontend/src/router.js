@@ -28,6 +28,9 @@ function render(data){
         root.innerHTML = target.view(data)
         document.title = target.title
     }
+
+    // Scroll to top
+    scrollTo(0, 0)
 }
 
 // Global navigation function

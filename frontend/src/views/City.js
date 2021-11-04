@@ -40,9 +40,9 @@ export default function City(){
         let output = ""
 
         for (let i = 0; i < n_repeat; i++){
-            
-            let n = Math.floor(Math.random() * (dataset.length - 1) + 1)
 
+            let n = Math.floor(Math.random() * (dataset.length - 1) + 1)
+            
             // Avoid duplicate || make sure an image file is present
             while (inspiration_showed.includes(n) || !dataset[n].Files[0]){
                 n = Math.floor(Math.random() * (dataset.length - 1) + 1)
@@ -70,9 +70,7 @@ export default function City(){
                 </div>
             `)
         }
-
         return output
-        
     }
 
     window.showMore = () => {
@@ -111,7 +109,7 @@ export default function City(){
                 <h3 class="title">Inspiration</h3>
                 ${returnInspiration(4)}
             </div>
-            <div class="btn1 btn1--center" onclick="showMore()">Se flere</div>
+            <div class="btn1 btn1--center" onclick="showMore()">Flere forslag</div>
         </div>
     `)   
 

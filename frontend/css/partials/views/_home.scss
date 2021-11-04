@@ -7,9 +7,14 @@
 
     .home__city {
         margin-bottom: 30px;
+        overflow: hidden;
+        display:flex;
+        flex-direction: column;
 
         img {
-            width:100%;
+            justify-self: center;
+            align-self: center;
+            height:300px;
         }
     }
 }
