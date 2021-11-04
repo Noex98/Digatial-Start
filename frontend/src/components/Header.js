@@ -1,13 +1,12 @@
-import NavigateBack from "../utils/NavigateBack.js";
 import Link from "../utils/Link.js"
 
 export default function Header(props){
 
     function backBtn(){
-        if (props && props.backBtn){
+        if (props && props.backBtn && props.destination){
             return (/*html*/`
                 <div class="content__backBtn">
-                    ${NavigateBack(/*html*/`
+                    ${Link(props.destination, /*html*/`
                         <i class="fas fa-chevron-left"></i>
                     `)}
                 </div>

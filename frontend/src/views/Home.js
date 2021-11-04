@@ -30,9 +30,9 @@ export default function Home(){
 
     return (/*html*/`
         <div class="root__home">
-            ${Header({backBtn: true})}
+            ${Header()}
             <h2>Where are Denmark's best places to go?</h2>
             ${returnCities()}
         </div>
-    `)   
+    `)
 }
