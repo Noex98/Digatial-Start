@@ -6,23 +6,23 @@ import Redirect from "../utils/Redirect.js"
 
 export default function City(){
 
-    let city_data = cities.get()
-    let dataset = aarhus.get()
+    let _city = cities.get()
+    let _dataset = aarhus.get()
 
-    if (city_data.loaded === false || aarhus.loaded === false){
+    if (_city.loaded === false || _dataset.loaded === false){
         return Spinner()
     }
 
     // Make sure we have a search query
     let city
     if (location.search){
-        for (let i = 0; i < city_data.length; i++){
-            if (city_data[i].name.en.toLowerCase() === location.search.substring(1).toLowerCase()){
-                city = city_data[i]
+        for (let i = 0; i < _city.length; i++){
+            if (_city[i].name.en.toLowerCase() === location.search.substring(1).toLowerCase()){
+                city = _city[i]
                 break
 
             // Not found
-            } else if (i === city_data.length - 1){
+            } else if (i === _city.length - 1){
                 Redirect('/')
                 return
             }
@@ -41,16 +41,16 @@ export default function City(){
 
         for (let i = 0; i < n_repeat; i++){
 
-            let n = Math.floor(Math.random() * (dataset.length - 1) + 1)
+            let n = Math.floor(Math.random() * (_dataset.length - 1) + 1)
             
             // Avoid duplicate || make sure an image file is present
-            while (inspiration_showed.includes(n) || !dataset[n].Files[0]){
-                n = Math.floor(Math.random() * (dataset.length - 1) + 1)
+            while (inspiration_showed.includes(n) || !_dataset[n].Files[0]){
+                n = Math.floor(Math.random() * (_dataset.length - 1) + 1)
             }
 
             inspiration_showed.push(n)
 
-            let item = dataset[n]
+            let item = _dataset[n]
 
             output += (/*html*/`
                 <div class="inspiration__item">
@@ -91,18 +91,26 @@ export default function City(){
             <div class="city__categories">
                 <h3 class="title">Ting at lave i ${city.name.da}</h3>
                 <div class="categories__grid">
-                    <div>
-                        <div>Attraktioner</div>
-                    </div>
-                    <div>
-                        <div>Begivenheder</div>
-                    </div>
-                    <div>
-                        <div>Aktiviteter</div>
-                    </div>
-                    <div>
-                        <div>Mad og drikke</div>
-                    </div>
+                    ${Link('/findItem?type=attraktioner&city=' + city.name.en.toLowerCase(), /*html*/`
+                        <div>
+                            <div>Attraktioner</div>
+                        </div>
+                    `)}
+                    ${Link('/findItem?type=begivenheder&city=' + city.name.en.toLowerCase(), /*html*/`
+                        <div>
+                            <div>Begivenheder</div>
+                        </div>
+                    `)}
+                    ${Link('/findItem?type=aktiviteter&city=' + city.name.en.toLowerCase(), /*html*/`
+                        <div>
+                            <div>Aktiviteter</div>
+                        </div>
+                    `)}
+                    ${Link('/findItem?type=madogdrikke&city=' + city.name.en.toLowerCase(), /*html*/`
+                        <div>
+                            <div>Mad og drikke</div>
+                        </div>
+                    `)}
                 </div>
             </div>
             <div class="city__inspiration">

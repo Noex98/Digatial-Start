@@ -2,6 +2,7 @@
 import Err404 from './views/Err404.js'
 import Home from './views/Home.js'
 import City from './views/City.js'
+import FindItem from './views/FindItem.js'
 
 const routes = [
     {
@@ -12,6 +13,10 @@ const routes = [
         path: '/city',
         view: City,
         title: 'By'
+    }, {
+        path: '/findItem',
+        view: FindItem,
+        title: 'x'
     }
 ]
 

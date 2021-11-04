@@ -17,10 +17,10 @@ app.use(express.json({ extended: true }));          // Parse JSON
 app.use(api)
 
 // Static files
-app.use('/', express.static(path.join(__dirname, 'frontend')));
+app.use(express.static(path.join(__dirname, 'frontend')));
 
 // Always send index
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(__dirname + '/frontend/index.html')
 })
 
