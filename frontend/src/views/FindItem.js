@@ -31,7 +31,7 @@ export default function FindItem(){
         // Validate input
         try {
             city = _cities.find(e => e.name.en.toLowerCase() == params.city.toLowerCase())
-            type = _categories.find(e => e.Name.replace(/\s+/g, '').toLowerCase() == params.type.toLowerCase())
+            type = _categories.find(e => e.Name.replace(/\s+/g, '').toLowerCase() == params.type.toLowerCase()) // /\s+/g  === whitespace
             if (city == undefined || type == undefined){
                 Redirect('/')
                 return
@@ -47,7 +47,13 @@ export default function FindItem(){
     return (/*html*/`
         ${Header({backBtn: true, destination: `/city?${city.name.en}`})}
         <div class="root__findItem">
-            123
+            <div class="findItem__crumbs">
+                ${Link('/', 'Forside')}
+                <span> -> </span>
+                ${Link('/city?' + city.name.en, city.name.da)}
+                <span> -> </span>
+                ${Link('/fintItem?city=' + city.name.en + '&type=' + type.Name, type.Name)}
+            </div>
         </div>
     `)
 }
