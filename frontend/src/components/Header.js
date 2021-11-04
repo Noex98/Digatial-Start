@@ -17,11 +17,14 @@ export default function Header(props){
     }
 
     window.burgerClick = () => {
+        // Toggle modefier classes
         let burger = document.querySelector('.content__burger')
         let header = document.querySelector('header')
-
         burger.classList.toggle('burger--active')
         header.classList.toggle('header--active')
+
+        // Dissable scroll while burger open
+        document.body.classList.toggle('--noScroll')
     }
     
 

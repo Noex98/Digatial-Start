@@ -5,8 +5,8 @@
             "en": "Aarhus"
         },
         "img": {
-            "url": "../media/images/",
-            "alt": ""
+            "url": "../media/img/aarhus.jpg",
+            "alt": "Den uendelige bro"
         },
         "description": {
             "short": "Lorem",
@@ -21,7 +21,7 @@
             "en": "Copenhagen"
         },
         "img": {
-            "url": "../media/images/",
+            "url": "../media/img/aarhus.jpg",
             "alt": ""
         },
         "description": {
@@ -37,7 +37,7 @@
             "en": "Aalborg"
         },
         "img": {
-            "url": "../media/images/",
+            "url": "../media/img/aarhus.jpg",
             "alt": ""
         },
         "description": {
@@ -53,7 +53,7 @@
             "en": "Odense"
         },
         "img": {
-            "url": "../media/images/",
+            "url": "../media/img/aarhus.jpg",
             "alt": ""
         },
         "description": {

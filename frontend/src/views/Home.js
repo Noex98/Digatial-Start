@@ -19,7 +19,7 @@ export default function Home(){
                     <img src="${city.img.url}" alt="${city.img.alt}" />
                     <p>${city.description.short}</p>
                     ${Link('/city?' + city.name.en, /*html*/`
-                        <div>EXPLORE NOW <i class="fas fa-chevron-right"></i></div>
+                        <div class="btn1">EXPLORE NOW <i class="fas fa-chevron-right"></i></div>
                     `)}
                 </div>
             `)
@@ -29,8 +29,8 @@ export default function Home(){
     }
 
     return (/*html*/`
+        ${Header()}
         <div class="root__home">
-            ${Header()}
             <h2>Where are Denmark's best places to go?</h2>
             ${returnCities()}
         </div>

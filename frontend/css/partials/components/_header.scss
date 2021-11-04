@@ -78,7 +78,7 @@
 
     nav {
         transition: 200ms;
-        max-height: 0;
+        max-height: 0px;
         overflow:hidden;
         height: calc(100vh - 67px);
 
@@ -89,7 +89,6 @@
 }
 
 .header--active {
-    height:100vh;
 
     nav {
         max-height:100vh;

@@ -63,7 +63,7 @@ export default function City(){
                     <div class="item__text">
                         ${item.Descriptions[item.Descriptions.length - 1].Text}
                     </div>
-                    <div class="item__cta">
+                    <div class="btn1">
                         SE MERE <i class="fas fa-chevron-right"></i>
                     </div>
 
@@ -91,7 +91,7 @@ export default function City(){
                 <p>${city.description.medium}</p>
             </div>
             <div class="city__categories">
-                <h4>Ting at lave i ${city.name.da}</h4>
+                <h3 class="title">Ting at lave i ${city.name.da}</h3>
                 <div class="categories__grid">
                     <div>
                         <div>Attraktioner</div>
@@ -108,9 +108,10 @@ export default function City(){
                 </div>
             </div>
             <div class="city__inspiration">
+                <h3 class="title">Inspiration</h3>
                 ${returnInspiration(4)}
             </div>
-            <div class="city__showMore" onclick="showMore()">Se flere</div>
+            <div class="btn1 btn1--center" onclick="showMore()">Se flere</div>
         </div>
     `)   
 
