@@ -1,7 +1,19 @@
 .btn1 {
-    width:fit-content;
-    padding:12px;
-    background:rgba(0, 0, 0, 0.1);
+    width:114px;
+    padding:12px 0;
+    background:#E70013;
+    position:relative;
+    font-size: 10px;
+    text-align: center;
+    color:white;
+
+    i {
+        position:absolute;
+        top: 50%;
+        transform:translateY(-50%);
+        right: 10px;
+        font-size: 8px;
+    }
 }
 
 .btn1--center {

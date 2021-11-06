@@ -9,9 +9,11 @@
             "alt": "Den uendelige bro"
         },
         "description": {
-            "short": "Lorem",
-            "medium": "Lorem",
-            "long": "Lorem"
+            "short": "Aarhus Kommune er indbyggermæssigt landets næststørste med 352.751 indbyggere, kun overgået af Københavns Kommune. Med sine charmerende stræder, lækre caféer og kulturelle oplevelser er Aarhus en af Danmarks hyggeligste storbyer.",
+            "long": {
+                "title": "Aarhusregionen",
+                "text": "Befinder du dig i Aarhusregionen, bliver du mødt af en god kombination af store skove, kyster med fine strande og travle og spændende byer såsom Ebeltoft og Grenaa. Med et væld af kulturoplevelser og lækre caféer og restauranter er Aarhus et godt udgangspunkt for at udforske dette område."
+            }
         },
         "data-set":"aarhus.json"
     },
@@ -25,9 +27,11 @@
             "alt": ""
         },
         "description": {
-            "short": "Lorem",
-            "medium": "Lorem",
-            "long": "Lorem"
+            "short": "København er Danmarks hovedstad og er med 1.336.982 indbyggere landets største byområde. Den danske hovedstad byder på spændende arkitektur, grønne oaser, et væld af kulturoplevelser, og noget af det bedste gourmetmad.",
+            "long": {
+                "title": "Lorem",
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae consectetur maxime ab earum porro, reprehenderit voluptate, inventore aliquid unde modi dolore expedita cum deserunt nam perspiciatis impedit ex neque quidem."
+            }
         },
         "data-set":""
     },
@@ -41,9 +45,11 @@
             "alt": ""
         },
         "description": {
-            "short": "Lorem",
-            "medium": "Lorem",
-            "long": "Lorem"
+            "short": "Aalborg eller Ålborg er en by i Region Nordjylland med 119.219 indbyggere, som derfor er Danmarks fjerdestørste by. Gå på opdagelse i byens historiske gader, og mærk det moderne byliv langs havnefronten.",
+            "long": {
+                "title": "Lorem",
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae consectetur maxime ab earum porro, reprehenderit voluptate, inventore aliquid unde modi dolore expedita cum deserunt nam perspiciatis impedit ex neque quidem."
+            }
         },
         "data-set":""
     },
@@ -57,9 +63,11 @@
             "alt": ""
         },
         "description": {
-            "short": "Lorem",
-            "medium": "Lorem",
-            "long": "Lorem"
+            "short": "Odense er Danmarks tredjestørste og Fyns største by med 180.760 indbyggere. Her finder du gode shoppingmuligheder i hyggelige gågader, flotte grønne områder og en fortryllende eventyrpark.",
+            "long": {
+                "title": "Lorem",
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae consectetur maxime ab earum porro, reprehenderit voluptate, inventore aliquid unde modi dolore expedita cum deserunt nam perspiciatis impedit ex neque quidem."
+            }
         },
         "data-set":""
     }

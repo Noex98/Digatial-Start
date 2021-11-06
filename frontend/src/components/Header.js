@@ -49,9 +49,43 @@ export default function Header(props){
 
             <nav class="header__nav">
                 <ul>
-                    <li>asdad</li>
-                    <li>asdad</li>
-                    <li>asdad</li>
+                    <li>
+                        ${Link('/favourites', /*html*/`
+                            Favoritter
+                        `)}
+                    </li>
+                    <li>
+                        ${Link('/', /*html*/`
+                            Byer
+                        `)}
+                    </li>
+                    <li>
+                        <ul>
+                            <li>
+                                ${Link('/city?copenhagen', /*html*/`
+                                    København
+                                `)}
+                            </li>
+                            <li>
+                                ${Link('/city?aarhus', /*html*/`
+                                    Aarhus
+                                `)}
+                            </li>
+                            <li>
+                                ${Link('/city?odense', /*html*/`
+                                    Odense
+                                `)}
+                            </li>
+                            <li>
+                                ${Link('/city?aalborg', /*html*/`
+                                    Aalborg
+                                `)}
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="https://www.visitdenmark.com/" target="_blank">Mere fra VisitDenmark</a>
+                    </li>
                 </ul>
             </nav>
         </header>

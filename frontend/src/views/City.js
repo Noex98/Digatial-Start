@@ -1,6 +1,6 @@
 import Header from "../components/Header.js"
 import Spinner from "../components/Spinner.js"
-import { cities, aarhus } from "../Store.js"
+import { cities, aarhus, categories } from "../Store.js"
 import Link from "../utils/Link.js"
 import Redirect from "../utils/Redirect.js"
 
@@ -8,8 +8,9 @@ export default function City(){
 
     let _city = cities.get()
     let _dataset = aarhus.get()
+    let _categories = categories.get()
 
-    if (_city.loaded === false || _dataset.loaded === false){
+    if (_city.loaded === false || _dataset.loaded === false || _categories === false){
         return Spinner()
     }
 
@@ -33,48 +34,89 @@ export default function City(){
         return
     }
 
-    let inspiration_showed = []
-
-    function returnInspiration(n_repeat) {
-
+    function returnCategories(){
         let output = ""
-
-        for (let i = 0; i < n_repeat; i++){
-
-            let n = Math.floor(Math.random() * (_dataset.length - 1) + 1)
-            
-            // Avoid duplicate || make sure an image file is present
-            while (inspiration_showed.includes(n) || !_dataset[n].Files[0]){
-                n = Math.floor(Math.random() * (_dataset.length - 1) + 1)
-            }
-
-            inspiration_showed.push(n)
-
-            let item = _dataset[n]
-
+        for (const categorie of _categories){
             output += (/*html*/`
-                <div class="inspiration__item">
-                    <div class="item__imgWrap">
-                        <img src="${item.Files[0].Uri}" alt="${item.Files[0].AltText}"/>
-                        <div class="imgWrap__text">
-                            ${item.Name}
-                        </div>
+                ${Link('/findItem?type=' + categorie.Name.replace(/\s+/g, '') +'&city=' + city.name.en.toLowerCase(), /*html*/`
+                    <div style="background-image: url(${categorie.ImageUrl});">
+                        <div>${categorie.Name}</div>
                     </div>
-                    <div class="item__text">
-                        ${item.Descriptions[item.Descriptions.length - 1].Text}
-                    </div>
-                    <div class="btn1">
-                        SE MERE <i class="fas fa-chevron-right"></i>
-                    </div>
-
-                </div>
+                `)}
             `)
         }
         return output
     }
 
-    window.showMore = () => {
-        document.querySelector('.city__inspiration').innerHTML += returnInspiration(3)
+    
+    let inspiration_showed = []
+
+    function returnInspiration(n_repeat) {
+        let output = ""
+        for (let i = 0; i < n_repeat; i++){
+
+            if (inspiration_showed.length === _dataset.length){
+
+                output = (/*html*/`
+                    <div>You have reached the end</div>
+                `)
+
+                function showmore(){
+                    console.log(1)
+                }
+
+                break
+            } else {
+
+                let n = Math.floor(Math.random() * (_dataset.length - 1) + 1)
+                
+                // Avoid duplicate || make sure an image file is present
+                while (inspiration_showed.includes(n) || !_dataset[n].Files[0]){
+                    n = Math.floor(Math.random() * (_dataset.length - 1) + 1)
+                }
+
+                inspiration_showed.push(n)
+
+                let item = _dataset[n]
+
+                output += (/*html*/`
+                    <div class="inspiration__item">
+                        <div class="item__imgWrap">
+                            <img src="${item.Files[0].Uri}" alt="${item.Files[0].AltText}"/>
+                            <div class="imgWrap__text">
+                                ${item.Name}
+                            </div>
+                        </div>
+                        <div class="item__text">
+                            ${item.Descriptions[item.Descriptions.length - 1].Text}
+                        </div>
+                        ${Link('/post?city=' + city.name.en + '&post_id=' + item.Id, /*html*/`
+                            <div class="btn1">
+                                SE MERE <i class="fas fa-chevron-right"></i>
+                            </div>
+                        `)}
+                    </div>
+                `)
+            }
+        }
+        return output
+    }
+    
+
+    onscroll = function showmore(){
+        if (location.pathname == '/city'){
+
+            let documentHeight = document.body.scrollHeight;
+            let currentScroll = window.scrollY + window.innerHeight;
+
+            let modifier = 200; 
+
+            if(currentScroll + modifier > documentHeight) {
+                document.querySelector('.city__inspiration').innerHTML += returnInspiration(4)
+            }
+        } else {
+            removeEventListener('onscroll', this)
+        }
     }
 
     return (/*html*/`
@@ -85,39 +127,19 @@ export default function City(){
                 <h1>${city.name.da}</h1>
             </div>
             <div class="city__introText">
-                <h2>Tekst</h2>
-                <p>${city.description.medium}</p>
+                <h2>${city.description.long.title}</h2>
+                <p>${city.description.long.text}</p>
             </div>
             <div class="city__categories">
                 <h3 class="title">Ting at lave i ${city.name.da}</h3>
                 <div class="categories__grid">
-                    ${Link('/findItem?type=attraktioner&city=' + city.name.en.toLowerCase(), /*html*/`
-                        <div>
-                            <div>Attraktioner</div>
-                        </div>
-                    `)}
-                    ${Link('/findItem?type=begivenheder&city=' + city.name.en.toLowerCase(), /*html*/`
-                        <div>
-                            <div>Begivenheder</div>
-                        </div>
-                    `)}
-                    ${Link('/findItem?type=aktiviteter&city=' + city.name.en.toLowerCase(), /*html*/`
-                        <div>
-                            <div>Aktiviteter</div>
-                        </div>
-                    `)}
-                    ${Link('/findItem?type=madogdrikke&city=' + city.name.en.toLowerCase(), /*html*/`
-                        <div>
-                            <div>Mad og drikke</div>
-                        </div>
-                    `)}
+                    ${returnCategories()}
                 </div>
             </div>
             <div class="city__inspiration">
                 <h3 class="title">Inspiration</h3>
                 ${returnInspiration(4)}
             </div>
-            <div class="btn1 btn1--center" onclick="showMore()">Flere forslag</div>
         </div>
     `)   
 

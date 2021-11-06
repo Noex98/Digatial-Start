@@ -2,7 +2,8 @@
     padding:12px 24px;
 
     >h2 {
-        margin-bottom: 30px;
+        margin-top:15px;
+        margin-bottom: 45px;
     }
 
     .home__city {
@@ -10,11 +11,21 @@
         overflow: hidden;
         display:flex;
         flex-direction: column;
+        h3 {
+            font-size:20px;
+            margin-bottom: 8px;
+        }
 
         img {
             justify-self: center;
             align-self: center;
             height:300px;
+            margin-bottom:15px;
+        }
+
+        p {
+            font-size:14px;
+            margin-bottom: 21px;
         }
     }
 }

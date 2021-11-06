@@ -47,8 +47,8 @@ export default function FindItem(){
     return (/*html*/`
         ${Header({backBtn: true, destination: `/city?${city.name.en}`})}
         <div class="root__findItem">
-            <div class="findItem__crumbs">
-                ${Link('/', 'Forside')}
+            <div class="findItem__crumbs breadcrumbs">
+                ${Link('/', 'Byer')}
                 <span> -> </span>
                 ${Link('/city?' + city.name.en, city.name.da)}
                 <span> -> </span>

@@ -77,13 +77,26 @@
     }
 
     nav {
-        transition: 200ms;
+        transition: max-height 200ms;
         max-height: 0px;
         overflow:hidden;
         height: calc(100vh - 67px);
+        font-size: 20px;
+        
 
-        ul {
+        >ul {
+            padding:36px;
             list-style: none;
+            
+            li {
+                margin-bottom:6px;
+
+                >ul li {
+                    list-style: none;
+                    margin-left: 25px;
+                    opacity: 0.5;
+                }
+            }
         }
     }
 }
@@ -91,6 +104,7 @@
 .header--active {
 
     nav {
+        
         max-height:100vh;
         border-top: 1px solid rgba(0, 0, 0, 0.3);
     }
