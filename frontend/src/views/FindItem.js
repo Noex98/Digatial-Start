@@ -42,7 +42,68 @@ export default function FindItem(){
             return
         }
     })()
-    
+
+    // Open accordion
+    window.openAccordion = () => {
+        document.querySelector('.findItem__accordion').classList.toggle('findItem__accordion--active')
+    }
+
+    function returnFilter(){
+        let output = ""
+        if (type.Children.length > 1){
+            
+            for (let subType of type.Children){
+                output += (/*html*/`
+                    <div onclick="filterUpdate('categories', this)" data-value="${subType.Id}">${subType.Name}</div>
+                `)
+            }
+
+        }
+        return output
+    }
+
+    // Init empty search state
+    let searchState = {
+        searchQuery: "",
+        filter: {
+            categories: [],
+            age: "",
+            place : "",
+        },
+        sortBy: "",
+    }
+
+    // Update search state when writing text input
+    window.searchQuery = (value) => {
+        searchState.searchQuery = value;
+        updateResults(searchState)
+    }
+
+    // Update filter search state
+    window.filterUpdate = (type, element) => {
+        if (type == 'age' || type == 'place'){
+            searchState.filter[type] = element.dataset.value
+        } else if (type == 'categories'){
+
+            // Toggle modifier calss
+            element.classList.toggle('--active')
+
+            // toggle the element in the array
+            if (searchState.filter.categories.includes(element.dataset.value)){ 
+                let i = searchState.filter.categories.indexOf(element.dataset.value)
+                searchState.filter.categories.splice(i, 1)
+            } else {
+                searchState.filter.categories.push(element.dataset.value)
+            }
+        }
+
+        updateResults(searchState)
+    }
+
+    // Update the shown results
+    function updateResults(state){
+        console.log(state)
+    }
 
     return (/*html*/`
         ${Header({backBtn: true, destination: `/city?${city.name.en}`})}
@@ -52,8 +113,27 @@ export default function FindItem(){
                 <span> -> </span>
                 ${Link('/city?' + city.name.en, city.name.da)}
                 <span> -> </span>
-                ${Link('/fintItem?city=' + city.name.en + '&type=' + type.Name, type.Name)}
+                ${Link('/findItem?city=' + city.name.en + '&type=' + type.Name, type.Name)}
             </div>
+
+            <div class="findItem__search">
+                <div class="search__accBtn" onclick="openAccordion()">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <div class="search__inputCont">
+                    <input onkeyup="searchQuery(this.value)" type="text" />
+                </div>
+            </div>
+
+            <div class="findItem__accordion">
+                <div class="accordion__filter">
+                    <h4>Filter</h4>
+                    <div class="filter__cont">
+                        ${returnFilter()}
+                    </div>
+                </div>
+            </div>
+
         </div>
     `)
 }

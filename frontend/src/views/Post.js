@@ -44,9 +44,12 @@ export default function Post() {
     function returnVideo(){
         for (let i = 0; i < post.Descriptions.length; i++){
             if (post.Descriptions[i].DescriptionType == "FILM"){
+
+                let video = post.Descriptions[i].Html.replace(/width=("|'|`)(.*?)("|'|`)/, 'width="100%"')
+
                 return (/*html*/`
                     <div class="post__video">
-                        ${post.Descriptions[i].Html}
+                        ${video}
                     </div>
                 `)
             }

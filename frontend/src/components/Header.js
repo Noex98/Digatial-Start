@@ -22,9 +22,6 @@ export default function Header(props){
         let header = document.querySelector('header')
         burger.classList.toggle('burger--active')
         header.classList.toggle('header--active')
-
-        // Dissable scroll while burger open
-        document.body.classList.toggle('--noScroll')
     }
     
 
