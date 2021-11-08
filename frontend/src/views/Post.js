@@ -118,7 +118,7 @@ export default function Post() {
                 <span> -> </span>
                 ${Link('/city?' + city.name.en, city.name.da)}
                 <span> -> </span>
-                ${Link('/fintItem?city=' + city.name.en + '&type=' + post.MainCategory.Name, post.MainCategory.Name)}
+                ${Link('/findItem?city=' + city.name.en + '&type=' + post.MainCategory.Name, post.MainCategory.Name)}
             </div>
             <div class="post__introImg">
                 ${returnImg(post)}

@@ -502,7 +502,7 @@ a {
 }
 
 .root__findItem .findItem__search {
-  margin: 10px 0;
+  margin: 20px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -521,6 +521,7 @@ a {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
+  opacity: 0.3;
 }
 
 .root__findItem .findItem__search .search__inputCont {
@@ -532,17 +533,33 @@ a {
 .root__findItem .findItem__search .search__inputCont input {
   width: 100%;
   font-size: 16px;
-  padding: 6px;
+  padding: 6px 12px;
   outline: none;
   border: 2px solid rgba(0, 0, 0, 0.3);
   border-radius: 24px;
 }
 
 .root__findItem .findItem__accordion {
-  -webkit-transition: max-height 200ms;
-  transition: max-height 200ms;
+  -webkit-transition: 200ms;
+  transition: 200ms;
   max-height: 0px;
   overflow: hidden;
+}
+
+.root__findItem .findItem__accordion .accordion__filter {
+  position: relative;
+}
+
+.root__findItem .findItem__accordion .accordion__filter h4 {
+  font-size: 18px;
+}
+
+.root__findItem .findItem__accordion .accordion__filter .filter__resetBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.5;
+  font-size: 10px;
 }
 
 .root__findItem .findItem__accordion .accordion__filter .filter__cont {
@@ -582,7 +599,49 @@ a {
   color: white;
 }
 
+.root__findItem .findItem__resultCont .resultCont__item {
+  margin-bottom: 30px;
+}
+
+.root__findItem .findItem__resultCont .item__imgWrap {
+  overflow: hidden;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.root__findItem .findItem__resultCont .item__imgWrap img {
+  height: 275px;
+}
+
+.root__findItem .findItem__resultCont .item__imgWrap .imgWrap__text {
+  max-width: calc(100% - 40px);
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  padding: 12px;
+  background: white;
+}
+
+.root__findItem .item__text {
+  padding: 12px 0;
+}
+
+.root__findItem .findItem__end {
+  font-size: 20px;
+  padding: 16px;
+  text-align: center;
+}
+
 .root__findItem .findItem__accordion--active {
   max-height: 100vh;
+  margin-bottom: 24px;
 }
 /*# sourceMappingURL=style.css.map */

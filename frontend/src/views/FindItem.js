@@ -43,6 +43,9 @@ export default function FindItem(){
         }
     })()
 
+    // Update global data for faster searching
+    _dataset = _dataset.filter(x => x.MainCategory.Id === type.Id)
+
     // Open accordion
     window.openAccordion = () => {
         document.querySelector('.findItem__accordion').classList.toggle('findItem__accordion--active')
@@ -51,32 +54,67 @@ export default function FindItem(){
     function returnFilter(){
         let output = ""
         if (type.Children.length > 1){
-            
+
+            let filters = ""
+
             for (let subType of type.Children){
-                output += (/*html*/`
+                filters += (/*html*/`
                     <div onclick="filterUpdate('categories', this)" data-value="${subType.Id}">${subType.Name}</div>
                 `)
             }
 
+            output += (/*html */`
+                <div class="accordion__filter">
+                    <h4>Filter</h4>
+                    <div class="filter__resetBtn" onclick="resetSearchState()">Nulstil</div>
+                    <div class="filter__cont">
+                        ${filters}
+                    </div>
+                </div>
+            `)
+
+            
         }
         return output
     }
 
     // Init empty search state
     let searchState = {
-        searchQuery: "",
+        query: "",
         filter: {
             categories: [],
             age: "",
             place : "",
         },
         sortBy: "",
+        data: _dataset,
+        posts_shown: 0
+    }
+
+    window.resetSearchState = () => {
+        searchState = {
+            query: "",
+            filter: {
+                categories: [],
+                age: "",
+                place : "",
+            },
+            sortBy: "",
+            data: _dataset,
+            posts_shown: 0
+        }
+        document.querySelector('.search__inputCont input').value = ''
+        let btns = document.querySelectorAll('.filter__cont div')
+        for (let i = 0; i < btns.length; i++){
+            btns[i].classList.remove('--active')
+        }
+        updateData()
     }
 
     // Update search state when writing text input
     window.searchQuery = (value) => {
-        searchState.searchQuery = value;
-        updateResults(searchState)
+        searchState.query = value;
+        updateData()
     }
 
     // Update filter search state
@@ -97,12 +135,111 @@ export default function FindItem(){
             }
         }
 
-        updateResults(searchState)
+        updateData()
     }
 
     // Update the shown results
-    function updateResults(state){
-        console.log(state)
+    function updateData(){
+        
+        //Filter through data
+        let data = _dataset.filter(item => {
+
+            // Search query (input field)
+            if (searchState.query.length > 0){
+                if (!item.Name.toLowerCase().includes(searchState.query.toLowerCase())){
+                    return false
+                }
+            // Categories
+            } else if (searchState.filter.categories.length > 0){
+                let found = false
+                for (let i = 0; i < searchState.filter.categories.length; i++){
+                    if (searchState.filter.categories[i] == item.Category.Id){
+                        found = true
+                        break
+                    }
+                }
+                if (!found){
+                    return false
+                }
+            // Item did not fail test
+            } 
+            return true
+        })
+
+        searchState.data = data
+        searchState.posts_shown = 0
+
+        document.querySelector('.findItem__resultCont').innerHTML = returnItems(3)
+    }
+
+    function returnImg(product) {
+        if (product.Files.length > 0){
+            return (/*html*/`<img src="${product.Files[0].Uri}" alt="${product.Files[0].AltText}" />`)
+        } else {
+            return (/*html*/`<img src="x"/>`)
+        }
+    }
+
+
+    function returnItems(n){
+        let output = ""
+
+        if (searchState.posts_shown == searchState.data.length){
+            document.querySelector('.findItem__end').innerText = 'Ingen yderligere resultater'
+            return ''
+        }
+
+        for (let i = 0; i < n; i++){
+
+            console.log()
+
+            if (i >= searchState.data.length){
+                document.querySelector('.findItem__end').innerText = 'Ingen yderligere resultater'
+                break
+            } else {
+                let item = searchState.data[searchState.posts_shown]
+
+                output += (/*html*/`
+                    <div class="resultCont__item">
+                        <div class="item__imgWrap">
+                            ${returnImg(item)}
+                            <div class="imgWrap__text">
+                                ${item.Name}
+                            </div>
+                        </div>
+                        <div class="item__text">
+                            ${item.Descriptions[item.Descriptions.length - 1].Text}
+                        </div>
+                        ${Link('/post?city=' + city.name.en + '&post_id=' + item.Id, /*html*/`
+                            <div class="btn1">
+                                SE MERE <i class="fas fa-chevron-right"></i>
+                            </div>
+                        `)}
+                    </div>
+                `)
+
+                searchState.posts_shown += 1
+            }
+
+        }
+        
+        return output
+    }
+
+    onscroll = function showmore(){
+        if (location.pathname == '/findItem'){
+
+            let documentHeight = document.body.scrollHeight;
+            let currentScroll = window.scrollY + window.innerHeight;
+
+            let modifier = 200; 
+
+            if(currentScroll + modifier > documentHeight) {
+                document.querySelector('.findItem__resultCont').innerHTML += returnItems(4)
+            }
+        } else {
+            removeEventListener('onscroll', this)
+        }
     }
 
     return (/*html*/`
@@ -121,18 +258,19 @@ export default function FindItem(){
                     <i class="fas fa-sliders-h"></i>
                 </div>
                 <div class="search__inputCont">
-                    <input onkeyup="searchQuery(this.value)" type="text" />
+                    <input onkeyup="searchQuery(this.value)" placeholder="Søg..." type="text" />
                 </div>
             </div>
 
             <div class="findItem__accordion">
-                <div class="accordion__filter">
-                    <h4>Filter</h4>
-                    <div class="filter__cont">
-                        ${returnFilter()}
-                    </div>
-                </div>
+                ${returnFilter()}
+                
             </div>
+
+            <div class="findItem__resultCont">
+                ${returnItems(3)}
+            </div>
+            <div class="findItem__end"></div>
 
         </div>
     `)
