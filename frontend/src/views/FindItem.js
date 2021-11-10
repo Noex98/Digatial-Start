@@ -71,10 +71,37 @@ export default function FindItem(){
                         ${filters}
                     </div>
                 </div>
-            `)
+            `)   
+        } else if (type.Id == 58){
+            output += (/*html */`
+                <div class="accordion__filter">
+                    <div class="filter__resetBtn" onclick="resetSearchState()">Nulstil</div>
 
-            
+                    <h4>Sortér</h4>
+                    <div class="filter__cont">
+                        <div>Dato</div>
+                        <div>Pris</div>
+                        <div style="opacity: 0; pointer-events:none;"></div>
+                    </div>
+                    <h4>Filter</h4>
+
+                    <h5>Aldersgruppe</h5>
+                    <div class="filter__cont">
+                        <div>Børn</div>
+                        <div>Unge</div>
+                        <div>Voksne</div>
+                    </div>
+                    
+                    <h5>Sted</h5>
+                    <div class="filter__cont">
+                        <div>Ude</div>
+                        <div>Inde</div>
+                        <div style="opacity: 0; pointer-events:none;"></div>
+                        </div>
+                </div>
+            `)  
         }
+
         return output
     }
 
@@ -88,6 +115,7 @@ export default function FindItem(){
         },
         sortBy: "",
         data: _dataset,
+        data_sorted: _dataset,
         posts_shown: 0
     }
 
@@ -149,8 +177,9 @@ export default function FindItem(){
                 if (!item.Name.toLowerCase().includes(searchState.query.toLowerCase())){
                     return false
                 }
+            }
             // Categories
-            } else if (searchState.filter.categories.length > 0){
+            if (searchState.filter.categories.length > 0){
                 let found = false
                 for (let i = 0; i < searchState.filter.categories.length; i++){
                     if (searchState.filter.categories[i] == item.Category.Id){
@@ -161,8 +190,8 @@ export default function FindItem(){
                 if (!found){
                     return false
                 }
-            // Item did not fail test
             } 
+            // Item did not fail test
             return true
         })
 
@@ -176,7 +205,7 @@ export default function FindItem(){
         if (product.Files.length > 0){
             return (/*html*/`<img src="${product.Files[0].Uri}" alt="${product.Files[0].AltText}" />`)
         } else {
-            return (/*html*/`<img src="x"/>`)
+            return (/*html*/`<div class="imgWrap__noImg">No image</div>`)
         }
     }
 
@@ -191,9 +220,7 @@ export default function FindItem(){
 
         for (let i = 0; i < n; i++){
 
-            console.log()
-
-            if (i >= searchState.data.length){
+            if (searchState.posts_shown >= searchState.data.length){
                 document.querySelector('.findItem__end').innerText = 'Ingen yderligere resultater'
                 break
             } else {
@@ -247,9 +274,9 @@ export default function FindItem(){
         <div class="root__findItem">
             <div class="findItem__crumbs breadcrumbs">
                 ${Link('/', 'Byer')}
-                <span> -> </span>
+                <span><i class="fas fa-chevron-right"></i></span>
                 ${Link('/city?' + city.name.en, city.name.da)}
-                <span> -> </span>
+                <span><i class="fas fa-chevron-right"></i></span>
                 ${Link('/findItem?city=' + city.name.en + '&type=' + type.Name, type.Name)}
             </div>
 
@@ -264,7 +291,6 @@ export default function FindItem(){
 
             <div class="findItem__accordion">
                 ${returnFilter()}
-                
             </div>
 
             <div class="findItem__resultCont">

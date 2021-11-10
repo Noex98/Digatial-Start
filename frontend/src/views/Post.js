@@ -115,9 +115,9 @@ export default function Post() {
         <div class="root__post">
             <div class="post__crumbs breadcrumbs">
                 ${Link('/', 'Byer')}
-                <span> -> </span>
+                <span><i class="fas fa-chevron-right"></i></span>
                 ${Link('/city?' + city.name.en, city.name.da)}
-                <span> -> </span>
+                <span><i class="fas fa-chevron-right"></i></span>
                 ${Link('/findItem?city=' + city.name.en + '&type=' + post.MainCategory.Name, post.MainCategory.Name)}
             </div>
             <div class="post__introImg">
