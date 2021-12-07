@@ -1,46 +1,30 @@
-// Views
-import Err404 from './views/Err404.js'
-import Home from './views/Home.js'
-import City from './views/City.js'
-import FindItem from './views/FindItem.js'
-import Post from './views/Post.js'
+import routes from './routes.js'
+import { handleWillUnmount, handleDidMount} from './utils/Lifecycle.js'
 
-const routes = [
-    {
-        path: '/',
-        view: Home,
-        title: 'Home'
-    }, {
-        path: '/city',
-        view: City,
-        title: 'By'
-    }, {
-        path: '/findItem',
-        view: FindItem,
-        title: 'x'
-    }, {
-        path: '/post',
-        view: Post,
-        title: 'x'
-    }
-]
-
-let root = document.getElementById('root')
+let root = document.getElementById('root')  // Root div
 
 // Render view in the DOM
 function render(data){
-    let target = routes.find(element => element.path === window.location.pathname);
-    
-    if (target === undefined){
-        root.innerHTML = Err404()
-        document.title = 'Not found'
-    } else {
-        root.innerHTML = target.view(data)
-        document.title = target.title
-    }
 
-    // Scroll to top
-    scrollTo(0, 0)
+    // willUnmount triggered
+    handleWillUnmount()
+
+    // Mount
+    ;(() => {
+        let target = routes.find(element => element.path === window.location.pathname)
+        if (target === undefined){
+            root.innerHTML = Err404()
+            document.title = 'Not found'
+        } else {
+            root.innerHTML = target.view(data)
+            document.title = target.title
+        }
+        // Scroll to top
+        scrollTo(0, 0)
+    })()
+
+    // didMount triggered
+    handleDidMount()
 }
 
 // Global navigation function

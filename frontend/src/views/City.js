@@ -3,6 +3,7 @@ import Spinner from "../components/Spinner.js"
 import { cities, aarhus, categories } from "../Store.js"
 import Link from "../utils/Link.js"
 import Redirect from "../utils/Redirect.js"
+import { componentWillUnmount } from "../utils/Lifecycle.js"
 
 export default function City(){
 
@@ -48,7 +49,6 @@ export default function City(){
         return output
     }
 
-    
     let inspiration_showed = []
 
     function returnInspiration(n_repeat) {
@@ -101,9 +101,8 @@ export default function City(){
         }
         return output
     }
-    
 
-    onscroll = function showmore(){
+    function showmore(){
         if (location.pathname == '/city'){
 
             let documentHeight = document.body.scrollHeight;
@@ -114,10 +113,15 @@ export default function City(){
             if(currentScroll + modifier > documentHeight) {
                 document.querySelector('.city__inspiration').innerHTML += returnInspiration(4)
             }
-        } else {
-            removeEventListener('onscroll', this)
         }
     }
+
+    addEventListener('scroll', showmore)
+
+    componentWillUnmount(() => {
+        removeEventListener('scroll', showmore)
+    })
+   
 
     return (/*html*/`
         ${Header({backBtn: true, destination: '/'})}
